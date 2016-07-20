@@ -1,7 +1,4 @@
-# selenium
+# Scenarios covered as given in the Alexa test:
 
-This is selenium framework that is developed for LiveNX Web UI Automation
+This is Alexa framework that is developed for ALEXA Web UI Automation
 
-Test Scenarios covered:
-
-1) Login/Logout from the website
