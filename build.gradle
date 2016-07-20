@@ -1,0 +1,53 @@
+group 'com.liveaction'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+
+test {
+    systemProperties System.getProperties()
+
+    def gridEnabled = System.getProperty('grid.enabled')
+    if(gridEnabled != null){
+        if(gridEnabled.isAllWhitespace()){
+            systemProperty 'grid.enabled', 'true'
+        }
+    }
+
+    systemProperty 'logback.configurationFile', 'logback.xml'
+
+    useTestNG {
+        suites './src/test/resources/testng.xml'
+        
+        options {
+			useDefaultListeners = false
+			listeners << 'org.uncommons.reportng.HTMLReporter'
+			listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+		}
+    }
+
+    testLogging {
+        events 'started', 'passed'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	testCompile files('libs/sikulixapi.jar')
+    compile group: 'org.testng', name: 'testng', version: '6.9.4'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.+'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.+'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.+'
+    compile group: 'com.google.inject', name: 'guice', version: '4.0'
+    
+    testCompile 'org.uncommons:reportng:1.1.4'
+	testCompile ('org.uncommons:reportng:1.1.4'){
+		exclude group: "org.testng", module: "testng"
+	}
+    testCompile 'jaxen:jaxen:1.1.6'
+}

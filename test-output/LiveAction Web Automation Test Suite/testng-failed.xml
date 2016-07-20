@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [LiveAction Web Automation Test Suite]" parallel="tests">
+  <listeners>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  </listeners>
+  <test name="Stories">
+    <classes>
+      <class name="com.liveaction.selenium.testCase.VerifyInterfaceCapacityPage"/>
+    </classes>
+  </test> <!-- Stories -->
+  <test name="Stories(failed)" parallel="tests">
+    <classes>
+      <class name="com.liveaction.selenium.testCase.VerifyInterfaceCapacityPage">
+        <methods>
+          <include name="test_verifyInterfaceFilterFunctionality" invocation-numbers="0 1 2"/>
+          <include name="beforeTestClass"/>
+          <include name="afterTestClass"/>
+          <include name="test_verifyInterfaceCapacityChart"/>
+        </methods>
+      </class> <!-- com.liveaction.selenium.testCase.VerifyInterfaceCapacityPage -->
+    </classes>
+  </test> <!-- Stories(failed) -->
+</suite> <!-- Failed suite [LiveAction Web Automation Test Suite] -->
